@@ -11,7 +11,6 @@
 </template>
 <style lang="scss">
   
-  
   .g-ft {
     height: 45px;
     border-top: 1px solid #eee;

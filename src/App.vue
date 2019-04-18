@@ -7,7 +7,9 @@
 
 <style lang="scss">
 @import '/assets/css/reset.scss'; 
-
+#app {
+	background-color: #fcfcfc;
+}
 </style>
 <script>
 

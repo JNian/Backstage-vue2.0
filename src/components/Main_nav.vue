@@ -1,7 +1,7 @@
 <template>
   <!-- 左侧导航 -->
   <div  class="m-nav">
-    <el-menu router default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <el-menu router default-active="2"  class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
       <el-submenu v-for="(item, key) in nav" :key="item.id" :index="key + ''">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -17,6 +17,7 @@
     overflow-y: auto;
     width: 200px;
     border-right: 1px solid #eee;
+    // background-color: #fcfcfc;
     .el-menu-item, .el-submenu__title {
     	height: 35px;
     	line-height: 35px;
@@ -24,7 +25,7 @@
   }
    .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 200px;
+    // min-height: 200px;
   }
 </style>
 

@@ -16,7 +16,6 @@
     }
     .m-content {
       flex: 1;
-      background-color: #eee;
     }
   }
 </style>
