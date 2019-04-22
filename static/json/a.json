@@ -1,0 +1,85 @@
+[
+	{
+		"id": "1",
+		"name" : "实时数据",
+		"router": false,
+		"isShow": true,
+		"children": [
+			{
+				"id": "1-1",
+				"name" : "实时数据",
+				"router": "/home/0",
+				"isShow": true
+			},
+			{
+				"id": "1-2",
+				"name" : "电源数据",
+				"router": "/home/1",
+				"isShow": true
+			},
+			{
+				"id": "1-3",
+				"name" : "报停数据",
+				"router": "/home/2",
+				"isShow": true
+			},
+			{
+				"id": "1-4",
+				"name" : "异常数据",
+				"router": "/nav-1-4",
+				"isShow": true
+			}
+		]
+	},
+	{
+		"id": "2",
+		"name" : "二级菜单",
+		"router": false,
+		"isShow": true,
+		"children": [
+			{
+				"id": "2-1",
+				"name" : "二级菜单---子菜单1",
+				"router": "nav-2-1",
+				"isShow": true
+			},
+			{
+				"id": "2-2",
+				"name" : "二级菜单---子菜单2",
+				"router": "nav-2-2",
+				"isShow": true
+			},{
+				"id": "2-3",
+				"name" : "二级菜单---子菜单3",
+				"router": "nav-2-3",
+				"isShow": true
+			}
+		]
+	},
+	{
+		"id": "3",
+		"name" : "三级菜单",
+		"router": false,
+		"isShow": true,
+		"children": [
+			{
+				"id": "3-1",
+				"name" : "三级菜单---子菜单1",
+				"router": "nav-3-1",
+				"isShow": true
+			},
+			{
+				"id": "3-2",
+				"name" : "三级菜单---子菜单2",
+				"router": "nav-3-2",
+				"isShow": true
+			},
+			{
+				"id": "3-3",
+				"name" : "三级菜单---子菜单3",
+				"router": "nav-3-3",
+				"isShow": true
+			}
+		]
+	}
+]

@@ -9,10 +9,17 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 
 Vue.prototype.GLOBAL = global_
-axios.defaults.baseURL = global_.BASE_URL
+
+axios.defaults.timeout = 5000 // 在超时前，所有请求都会等待 5 秒
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+// axios.defaults.baseURL = 'http://*******'// 配置接口地址
+axios.defaults.baseURL = 'http://localhost:8088' // 配置接口地址
+
+axios.defaults.withCredentials = false
 Vue.prototype.$http = axios
 
 console.log(store)

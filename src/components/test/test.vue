@@ -7,16 +7,12 @@
         <!-- 左侧导航 -->
         <keep-alive>
           <v-nav></v-nav>
-        </keep-alive>
+        </keep-alive> 
         <!-- 右侧内容部分 -->
-        <v-content v-if="renderContent === '0'"></v-content>
-        <v-contenta v-else></v-contenta>
+        <v-content></v-content>
     </el-row>
     <!-- 底部 -->
     <el-row class="g-ft">
-       <div  v-if="renderContent === '0'">0</div>
-        <div  v-else-if="renderContent === '1'">1</div>
-        <div  v-else>0</div>
     </el-row>
   </div>
 </template>
@@ -38,15 +34,15 @@
   
 </style>
 <script>
-  import Header from './pub/Header.vue';
-  import Nav from './pub/Main_nav.vue';
-  import Content from './pub/Main_content.vue';
-  import Content1 from './pub/Main_content1.vue';
+  import Header from '../pub/Header.vue';
+  import Nav from '../pub/Main_nav.vue';
+  import Content from '../pub/Main_content.vue';
   export default {
     data() {
       return {
           navHeight: 0,
-          renderContent: '0'
+          content: 0
+
       }
     },
     mounted() {
@@ -61,24 +57,15 @@
         }
 
 
-        this.$http.get('http://localhost:3000/check_name', {
-          params: {
-            username: '1234'
-          }
-        })
-        .then((data) => {
-          console.log(data);
-        });
     },
-    beforeRouteUpdate(route, oldRoute, next) {
-      this.renderContent = route.params.id;
-      next();
+    activated() {
+        this.content = this.$route.params.id;
+        console.log(this.content, 'id');
     },
     components: {
       'v-header': Header,
       'v-nav': Nav,
-      'v-content': Content,
-      'v-contenta': Content1,
+      'v-content': Content
     }
   }
 </script>
