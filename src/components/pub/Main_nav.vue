@@ -69,7 +69,7 @@
         }
 	    },
 	    mounted() {
-	    	this.$http.get('/static/json/a.json')
+	    	this.$http.get('/json/a.json')
 	    	.then((res) => {
 	    		this.nav = res.data;
 	    	});
