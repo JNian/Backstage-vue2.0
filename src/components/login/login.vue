@@ -15,21 +15,21 @@
             <span class="u-line"></span>
         </div>
 		<div class="m-login">
-			<div class="t-login">LOGIN</div>
+			<div class="t-login" @mouseover="mouseover()" @mouseout="mouseout()">{{title}}</div>
 			<div class="f-username">
                 <img class="icon" src="/static/imgs/user.png">
                 <input type="text" class="item" id="username" @change="changeKey()" placeholder="请输入用户名">
 			</div>
 			<div class="f-password">
                 <img class="icon" src="/static/imgs/suo.png">
-                <input type="text" class="item" id="password" placeholder="请输入密码">
+                <input type="password" class="item" id="password" placeholder="请输入密码">
 			</div>
 			<div class="f-remember">
                 <span class="f-checked-label" @click="savePass()">记住密码</span>
                 <img class="f-checked" id="changeSrc" @click="savePass()" :src="imgSrc?'/static/imgs/border.png': '/static/imgs/xuanzhong.png'">
             </div>
 			<div class="f-submit">
-               <button class="sumbit" type="button">登录</button>         
+               <button class="sumbit" @click="regist()" type="button">登录</button>         
                <span class="u-itme1 item"></span>
                <span class="u-itme2 item"></span>
                <span class="u-itme3 item"></span>
@@ -38,14 +38,41 @@
                <span class="u-itme6 item"></span>
             </div>
 		</div>
+
+        <div class="m-regist">
+            <div class="t-login">{{title}}</div>
+            <div class="f-username">
+                <img class="icon" src="/static/imgs/user.png">
+                <input type="text" class="item" id="username" @change="changeKey()" placeholder="请输入用户名">
+            </div>
+            <div class="f-password">
+                <img class="icon" src="/static/imgs/suo.png">
+                <input type="password" class="item" id="password" placeholder="请输入密码">
+            </div>
+            <div class="f-remember">
+                <span class="f-checked-label" @click="savePass()">记住密码</span>
+                <img class="f-checked" id="changeSrc" @click="savePass()" :src="imgSrc?'/static/imgs/border.png': '/static/imgs/xuanzhong.png'">
+            </div>
+            <div class="f-submit">
+               <button class="sumbit" @click="regist()" type="button">登录</button>         
+               <span class="u-itme1 item"></span>
+               <span class="u-itme2 item"></span>
+               <span class="u-itme3 item"></span>
+               <span class="u-itme4 item"></span>
+               <span class="u-itme5 item"></span>
+               <span class="u-itme6 item"></span>
+            </div>
+        </div>
 	</div>
 </template>
 
 <script>
+    import Qs from 'qs'
     export default {
         data() {
             return {
-                imgSrc: true
+                imgSrc: true,
+                title: 'LOGIN'
             }
         },
         methods: {
@@ -58,7 +85,7 @@
             changeKey() {
                 const $username = this.getElement('username');
                 const username = $username.value;
-                this.$http.get('/check_name', {
+                this.$http.get('/check_username', {
                     params: {
                         username
                     }
@@ -66,6 +93,38 @@
                 .then((result)=>{
                     alert(result.data.data);
                 })
+            },
+            regist () {
+                const $username = this.getElement('username');
+                const $password = this.getElement('password');
+                const username = $username.value;
+                const password = $password.value;
+
+                this.$http.post('/regist', Qs.stringify({
+                    username,
+                    password
+                }))
+                .then((result)=>{
+                    alert(result.data.data);
+                })
+
+            },
+            mouseover() {
+                if (this.title === 'LOGIN') {
+                    this.title = 'REGIST';
+                } else {
+                    this.title = 'LOGIN';
+                }
+                console.log(this.title)
+
+            },
+            mouseout() {
+                if (this.title === 'LOGIN') {
+                    this.title = 'REGIST';
+                } else {
+                    this.title = 'LOGIN';
+                }
+                console.log(this.title)
             }
         }
 
@@ -101,9 +160,8 @@
 		padding: 80px 80px 10px;
 		border: 1px solid #98e5fb;
 		border-radius: 50%;
-		background-color: #06212799;
         -webkit-animation: line 5s linear 0s infinite;
-        
+        z-index: 2;
         .t-login {
             width: 150px;
             height: 90px;
@@ -227,7 +285,7 @@
             }
         }
 
-		input[type="text"],#btn1,#btn2{
+		input[type="text"], input[type="password"] {
 		    -web-kit-appearance:none;
 		    -moz-appearance: none;
 		    outline:0;
@@ -237,7 +295,7 @@
 		    border-bottom: 1px solid #999;
 		    background-color: #03030380;
 		}
-		input[type="text"]:focus{
+		input[type="text"]:focus, input[type="password"]:focus {
 		  border-bottom: 1px solid #fcfcfc;
 		}
 	}
@@ -263,6 +321,9 @@
             margin-left: -200px;
             border: 1px solid #98e5fb;
             border-radius: 50%; 
+            z-index: 2;
+            -webkit-animation: changeColor 10s linear 0s infinite;
+
         }
         .u-item {
             position: absolute;
@@ -350,6 +411,19 @@
         }
         100% {
             border-color: transparent;
+        }
+    }
+    @-webkit-keyframes changeColor {
+        0% {
+            background-color: rgba(0, 0, 0, .35);
+        }
+
+        50% {
+            background-color: rgba(81, 232, 251, .25);
+        }
+       
+        100% {
+            background-color: rgba(0, 0, 0, .35);
         }
     }
 </style>
